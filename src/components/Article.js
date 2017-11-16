@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 class Article extends Component {
     state = {
-        isOpen: true
+        isOpen: false
     }
 
     render() {
@@ -23,7 +23,6 @@ class Article extends Component {
     }
 
     handleClick = () => {
-        console.log('---', 'clicked')
         this.setState({
             isOpen: !this.state.isOpen
         })
