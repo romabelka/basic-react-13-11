@@ -2,23 +2,16 @@ import React, {Component} from 'react'
 import Article from './Article'
 
 export default class ArticleList extends Component {
-/*
     state = {
-        count: 0
+        openArticleId: null
     }
 
-    componentWillMount() {
-        setInterval(() => {
-            this.setState({
-                count: this.state.count + 1
-            })
-        }, 1000)
-    }
-
-*/
     render() {
         const articleElements = this.props.articles.map((article, index) => <li key = {article.id}>
-            <Article article = {article} defaultOpen = {index === 0}/>
+            <Article article = {article}
+                     isOpen = {this.state.openArticleId === article.id}
+                     toggleOpen = {this.toggleOpenArticle(article.id)}
+            />
         </li>)
         return (
             <ul>
@@ -26,4 +19,12 @@ export default class ArticleList extends Component {
             </ul>
         )
     }
+/*
+
+    toggleOpenArticleWitoutCurr(openArticleId) {
+        this.setState({ openArticleId })
+    }
+*/
+
+    toggleOpenArticle = openArticleId => () => this.setState({ openArticleId })
 }

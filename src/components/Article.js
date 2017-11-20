@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
-import toggleOpen from '../decorators/toggleOpen'
 
 class Article extends Component {
     static propTypes = {
@@ -9,7 +8,9 @@ class Article extends Component {
             title: PropTypes.string.isRequired,
             text: PropTypes.string,
             comments: PropTypes.array
-        }).isRequired
+        }).isRequired,
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func
     }
 
     constructor(props) {
@@ -57,4 +58,4 @@ class Article extends Component {
 }
 
 
-export default toggleOpen(Article)
+export default Article
