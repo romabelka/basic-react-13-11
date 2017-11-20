@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import CommentList from './CommentList'
 
 class Article extends Component {
     constructor(props) {
@@ -8,15 +9,6 @@ class Article extends Component {
             isOpen: props.defaultOpen
         }
     }
-
-    componentWillMount() {
-        console.log('---', 1)
-    }
-
-    componentDidMount() {
-        console.log('---', 2)
-    }
-
     componentWillReceiveProps(nextProps) {
         console.log('---', 'receive props :(((')
 
@@ -25,13 +17,14 @@ class Article extends Component {
         })
     }
 
-    componentWillUpdate() {
-        console.log('---', 'will update')
-    }
-
     render() {
         const {article} = this.props
-        const body = this.state.isOpen && <section>{article.text}</section>
+        const body = this.state.isOpen && (
+            <div>
+                <section>{article.text}</section>
+                <CommentList comments = {article.comments}/>
+            </div>
+        )
         return (
             <div>
                 <h2>
