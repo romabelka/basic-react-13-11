@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, PureComponent} from 'react'
 import CommentList from './CommentList'
 import PropTypes from 'prop-types'
 
-class Article extends Component {
+class Article extends PureComponent {
     static propTypes = {
         article: PropTypes.shape({
             title: PropTypes.string.isRequired,
@@ -31,8 +31,15 @@ class Article extends Component {
             error: 'can`t display an article'
         })
     }
+/*
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return !Object.keys(nextProps).every(prop => this.props[prop] === nextProps[prop])
+    }
+*/
 
     render() {
+        console.log('---', 'rendering article')
         if (this.state.error) return <h1>{this.state.error}</h1>
 
         const {article, isOpen, toggleOpen} = this.props
@@ -46,7 +53,7 @@ class Article extends Component {
             <div>
                 <h2>
                     {article.title}
-                    <button onClick={toggleOpen}>
+                    <button onClick={() => toggleOpen(article.id)}>
                         {isOpen ? 'close' : 'open'}
                     </button>
                 </h2>

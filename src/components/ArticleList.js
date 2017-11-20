@@ -10,7 +10,7 @@ export default class ArticleList extends Component {
         const articleElements = this.props.articles.map((article, index) => <li key = {article.id}>
             <Article article = {article}
                      isOpen = {this.state.openArticleId === article.id}
-                     toggleOpen = {this.toggleOpenArticle(article.id)}
+                     toggleOpen = {this.toggleOpenArticle}
             />
         </li>)
         return (
@@ -26,5 +26,5 @@ export default class ArticleList extends Component {
     }
 */
 
-    toggleOpenArticle = openArticleId => () => this.setState({ openArticleId })
+    toggleOpenArticle = openArticleId => this.setState({ openArticleId })
 }
