@@ -52,17 +52,15 @@ class Article extends PureComponent {
 
         const {article, isOpen, toggleOpen} = this.props
         const body = isOpen && (
-            <div ref = {this.setBodyRef}>
+            <div>
                 <button onClick = {this.increment}>increment</button>
                 <section>{article.text}</section>
                 <CommentList comments = {article.comments}
-                             key = {this.state.counter}
-                             ref = {this.setCommentsRef}
-                />
+                             key = {this.state.counter}/>
             </div>
         )
         return (
-            <div ref = {container => console.log('---', 333, container)}>
+            <div>
                 <h2>
                     {article.title}
                     <button onClick={toggleOpen}>
@@ -73,24 +71,6 @@ class Article extends PureComponent {
                 <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
             </div>
         )
-    }
-
-    setBodyRef = body => {
-        this.container = body
-        console.log('---', 111, body)
-    }
-
-    setCommentsRef = comments => {
-        this.comments = comments
-        console.log('---', 222, findDOMNode(comments))
-
-/*
-        setInterval(() => {
-            comments.setState({
-                isOpen: !comments.state.isOpen
-            })
-        }, 500)
-*/
     }
 }
 
