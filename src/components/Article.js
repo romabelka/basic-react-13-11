@@ -17,7 +17,8 @@ class Article extends PureComponent {
         super(props)
 
         this.state = {
-            error: null
+            error: null,
+            counter: 0
         }
     }
     componentWillReceiveProps(nextProps) {
@@ -29,6 +30,12 @@ class Article extends PureComponent {
     componentDidCatch(err) {
         this.setState({
             error: 'can`t display an article'
+        })
+    }
+
+    increment = () => {
+        this.setState({
+            counter: this.state.counter + 1
         })
     }
 /*
@@ -45,8 +52,9 @@ class Article extends PureComponent {
         const {article, isOpen, toggleOpen} = this.props
         const body = isOpen && (
             <div>
+                <button onClick = {this.increment}>increment</button>
                 <section>{article.text}</section>
-                <CommentList comments = {article.comments}/>
+                <CommentList comments = {article.comments} key = {this.state.counter}/>
             </div>
         )
         return (
