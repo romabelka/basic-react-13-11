@@ -1,7 +1,9 @@
 import React, {Component, PureComponent} from 'react'
 import {findDOMNode} from 'react-dom'
-import CommentList from './CommentList'
+import CommentList from '../CommentList'
 import PropTypes from 'prop-types'
+import CSSTransition from 'react-addons-css-transition-group'
+import './style.css'
 
 class Article extends PureComponent {
     static propTypes = {
@@ -67,7 +69,16 @@ class Article extends PureComponent {
                         {isOpen ? 'close' : 'open'}
                     </button>
                 </h2>
-                {body}
+                <CSSTransition
+                    transitionName = 'article'
+                    transitionEnterTimeout = {500}
+                    transitionLeaveTimeout = {300}
+                    transitionAppearTimeout = {500}
+                    transitionAppear
+                    component = 'div'
+                >
+                    {body}
+                </CSSTransition>
                 <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
             </div>
         )

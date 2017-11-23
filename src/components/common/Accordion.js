@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 class Accordion extends Component {
     state = {
-        openItemId: null
+        openItemId: this.props.defaultOpenId
     }
 
     toggleOpenItem = openItemId => ev => {
