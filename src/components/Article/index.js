@@ -1,9 +1,11 @@
 import React, {Component, PureComponent} from 'react'
+import {connect} from 'react-redux'
 import {findDOMNode} from 'react-dom'
 import CommentList from '../CommentList'
 import PropTypes from 'prop-types'
 import CSSTransition from 'react-addons-css-transition-group'
 import './style.css'
+import {deleteArticle} from '../../AC'
 
 class Article extends PureComponent {
     static propTypes = {
@@ -68,6 +70,7 @@ class Article extends PureComponent {
                     <button onClick={toggleOpen}>
                         {isOpen ? 'close' : 'open'}
                     </button>
+                    <button onClick = {this.handleDelete}>delete me</button>
                 </h2>
                 <CSSTransition
                     transitionName = 'article'
@@ -83,7 +86,12 @@ class Article extends PureComponent {
             </div>
         )
     }
+
+    handleDelete = () => {
+        console.log('---', 'implement me')
+        this.props.deleteArticle(this.props.article.id)
+    }
 }
 
 
-export default Article
+export default connect(null, { deleteArticle })(Article)
