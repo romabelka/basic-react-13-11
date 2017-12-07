@@ -1,4 +1,4 @@
-import {Map} from 'immutable'
+import {OrderedMap} from 'immutable'
 
 export function arrToMap(arr) {
     return arr.reduce((acc, item) => ({
@@ -8,5 +8,5 @@ export function arrToMap(arr) {
 }
 
 export function arrToImmutableMap(arr, RecordModel) {
-    return arr.reduce((acc, item) => acc.set(item.id, RecordModel ? new RecordModel(item) : item), new Map())
+    return arr.reduce((acc, item) => acc.set(item.id, RecordModel ? new RecordModel(item) : item), new OrderedMap())
 }
