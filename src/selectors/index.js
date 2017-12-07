@@ -1,9 +1,11 @@
 import {createSelector} from 'reselect'
 
-export const articlesSelector = state => state.articles
+export const articlesMapSelector = state => state.articles
 export const filtersSelector = state => state.filters
 export const commentListSelector = state => state.comments
 export const idSelector = (_, props) => props.id
+
+export const articlesSelector = createSelector(articlesMapSelector, articles => Object.values(articles))
 
 export const filtratedArticlesSelector = createSelector(articlesSelector, filtersSelector, (articles, filters) => {
     console.log('---', 1)
