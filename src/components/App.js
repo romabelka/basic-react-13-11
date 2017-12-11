@@ -17,7 +17,7 @@ class App extends Component {
                     <div><NavLink to="/filters" activeStyle={{color: 'red'}}>filters</NavLink></div>
                 </div>
                 <Switch>
-                    <Route path="/counter" component={Counter}/>
+                    <Route path="/counter" component={Counter} strict exact/>
                     <Route path="/filters" component={Filters}/>
                     <Route path="/articles" component={ArticlesPage}/>
                 </Switch>

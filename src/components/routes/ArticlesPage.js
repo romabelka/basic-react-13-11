@@ -9,6 +9,7 @@ class ArticlesPage extends Component {
     };
 
     render() {
+        console.log('---', this.props.match)
         return (
             <div>
                 <ArticleList />
