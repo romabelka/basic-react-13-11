@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import Article from './Article'
+import {NavLink} from 'react-router-dom'
 import Accordion from './common/Accordion'
 import Loader from './common/Loader'
 import {connect} from 'react-redux'
@@ -17,10 +17,7 @@ class ArticleList extends Accordion {
         if (loading) return <Loader />
         if (!articles.length) return <h3>No Articles</h3>
         const articleElements = articles.map((article) => <li key={article.id}>
-            <Article article={article}
-                     isOpen={article.id === this.state.openItemId}
-                     toggleOpen={this.toggleOpenItemMemoized(article.id)}
-            />
+            <NavLink activeStyle={{color: 'red'}} to={`/articles/${article.id}`}>{article.title}</NavLink>
         </li>)
         return (
             <ul>

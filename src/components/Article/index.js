@@ -7,16 +7,19 @@ import CSSTransition from 'react-addons-css-transition-group'
 import './style.css'
 import {deleteArticle, loadArticleById} from '../../AC'
 import Loader from '../common/Loader'
+import {articleSelector} from '../../selectors'
 
 class Article extends PureComponent {
     static propTypes = {
+        id: PropTypes.string.isRequired,
+        isOpen: PropTypes.bool,
+        toggleOpen: PropTypes.func,
+        //from connect
         article: PropTypes.shape({
             title: PropTypes.string.isRequired,
             text: PropTypes.string,
             comments: PropTypes.array
-        }).isRequired,
-        isOpen: PropTypes.bool,
-        toggleOpen: PropTypes.func
+        })
     }
 
     constructor(props) {
@@ -27,8 +30,9 @@ class Article extends PureComponent {
             counter: 0
         }
     }
-    componentWillReceiveProps({article, isOpen, loadArticleById}) {
-        if (!this.props.isOpen && isOpen && !article.loading && !article.text) loadArticleById(article.id)
+    componentDidMount() {
+        const {id, article, loadArticleById} = this.props
+        if (!article || (!article.loading && !article.text)) loadArticleById(id)
     }
 
     componentDidCatch(err) {
@@ -50,10 +54,11 @@ class Article extends PureComponent {
 */
 
     render() {
-        console.log('---', 'rendering article')
         if (this.state.error) return <h1>{this.state.error}</h1>
 
         const {article, isOpen, toggleOpen} = this.props
+        if (!article) return null
+
         return (
             <div>
                 <h2>
@@ -99,4 +104,6 @@ class Article extends PureComponent {
 }
 
 
-export default connect(null, { deleteArticle, loadArticleById })(Article)
+export default connect((state, props) => ({
+    article: articleSelector(state, props)
+}), { deleteArticle, loadArticleById })(Article)
