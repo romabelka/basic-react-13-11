@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {Provider} from 'react-redux'
 import {HashRouter, BrowserRouter} from 'react-router-dom'
+import {ConnectedRouter} from 'react-router-redux'
 import App from  './App'
+import history from '../history'
 
 class Root extends Component {
     static propTypes = {
@@ -12,9 +14,9 @@ class Root extends Component {
     render() {
         return (
             <Provider store = {this.props.store}>
-                <BrowserRouter>
+                <ConnectedRouter history={history}>
                     <App />
-                </BrowserRouter>
+                </ConnectedRouter>
             </Provider>
         )
     }
