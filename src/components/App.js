@@ -5,6 +5,7 @@ import CommentsPage from './routes/CommentsPage'
 import UserForm from './UserForm'
 import Filters from './Filters'
 import Counter from './Counter'
+import Menu, {MenuItem} from './Menu'
 
 class App extends Component {
     render() {
@@ -12,12 +13,12 @@ class App extends Component {
             <div>
                 <h1>App name</h1>
                 <UserForm />
-                <div>
-                    <div><NavLink to="/counter" activeStyle={{color: 'red'}}>counter</NavLink></div>
-                    <div><NavLink to="/articles" activeStyle={{color: 'red'}}>articles</NavLink></div>
-                    <div><NavLink to="/filters" activeStyle={{color: 'red'}}>filters</NavLink></div>
-                    <div><NavLink to="/comments/1" activeStyle = {{color: 'red'}}>comments</NavLink></div>
-                </div>
+                <Menu>
+                    <MenuItem url="/counter">Counter</MenuItem>
+                    <MenuItem url="/articles">Articles</MenuItem>
+                    <MenuItem url="/filters">Filters</MenuItem>
+                    <MenuItem url="/comments/1">Comments</MenuItem>
+                </Menu>
                 <Switch>
                     <Redirect from="/" exact to="/articles"/>
                     <Route path="/counter" component={Counter} strict exact/>
