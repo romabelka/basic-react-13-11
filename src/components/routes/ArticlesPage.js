@@ -9,7 +9,7 @@ class ArticlesPage extends Component {
     };
 
     render() {
-        console.log('---', this.props.match)
+        console.log('---', 2)
         return (
             <div>
                 <ArticleList />
@@ -20,6 +20,7 @@ class ArticlesPage extends Component {
 
     getArticle = ({ match }) => {
         if (!match) return <h1>Please select article</h1>
+        console.log('---', 3)
         return <Article id={match.params.id} isOpen key={match.params.id} />
     }
 }

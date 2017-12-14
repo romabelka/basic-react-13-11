@@ -9,7 +9,7 @@ import {deleteArticle, loadArticleById} from '../../AC'
 import Loader from '../common/Loader'
 import {articleSelector} from '../../selectors'
 
-class Article extends PureComponent {
+class Article extends Component {
     static propTypes = {
         id: PropTypes.string.isRequired,
         isOpen: PropTypes.bool,
@@ -54,6 +54,7 @@ class Article extends PureComponent {
 */
 
     render() {
+        console.log('---', 4)
         if (this.state.error) return <h1>{this.state.error}</h1>
 
         const {article, isOpen, toggleOpen} = this.props
@@ -106,4 +107,4 @@ class Article extends PureComponent {
 
 export default connect((state, props) => ({
     article: articleSelector(state, props)
-}), { deleteArticle, loadArticleById })(Article)
+}), { deleteArticle, loadArticleById }, null, { pure: false })(Article)

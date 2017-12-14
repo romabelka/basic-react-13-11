@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import MenuItem from './MenuItem'
 
+//console.log('---', React.Fragment)
 class Menu extends Component {
     static propTypes = {
 
@@ -8,10 +9,10 @@ class Menu extends Component {
 
     render() {
         return (
-            <div>
+            <Fragment>
                 <h2>Main menu:</h2>
                 {this.props.children}
-            </div>
+            </Fragment>
         )
     }
 }
