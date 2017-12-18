@@ -36,7 +36,7 @@ export default (articles = new ReducerRecord(), action) => {
         case LOAD_ALL_ARTICLES + SUCCESS:
             return articles
                 .set('loading', false)
-                .set('entities', arrToImmutableMap(response, ArticleRecord))
+                .update('entities', entities => arrToImmutableMap(response, ArticleRecord).merge(entities))
 
         case LOAD_ARTICLE + START:
             return articles.setIn(['entities', payload.id, 'loading'], true)

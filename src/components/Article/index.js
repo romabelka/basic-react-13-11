@@ -8,6 +8,7 @@ import './style.css'
 import {deleteArticle, loadArticleById} from '../../AC'
 import Loader from '../common/Loader'
 import {articleSelector} from '../../selectors'
+import LocalizedText from '../common/LocalizedText'
 
 class Article extends Component {
     static propTypes = {
@@ -67,7 +68,9 @@ class Article extends Component {
                     <button onClick={toggleOpen}>
                         {isOpen ? 'close' : 'open'}
                     </button>
-                    <button onClick = {this.handleDelete}>delete me</button>
+                    <button onClick = {this.handleDelete}>
+                        <LocalizedText>delete me</LocalizedText>
+                    </button>
                 </h2>
                 <CSSTransition
                     transitionName = 'article'
